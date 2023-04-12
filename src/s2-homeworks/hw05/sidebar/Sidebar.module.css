@@ -1,25 +1,85 @@
 .sidebar {
+    position: fixed;
+    width: 30%;
+    height: 100vh;
+    overflow: hidden;
+    background: #FFFFFF;
+    box-shadow: 0 10px 40px rgba(29, 33, 38, 0.13), 0 1px 2px rgba(29, 33, 38, 0.1);
+    border-radius: 0;
+    transition: 0.5s;
+    z-index: 2;
+    display: block;
+    left: -100%;
 }
 
-.sidebar.open {
+.open {
+    left: 0;
 }
 
 .background {
+    background: #000000;
+    opacity: 0.3;
+    position: absolute;
+    z-index: 1;
+    width: 100vw;
+    height: 100vh;
 }
 
 .nav {
+    height: 100%;
+    margin: 63px 0 0 70px;
+    display: flex;
+    flex-direction: column;
+}
+
+@media (max-width: 500px) {
+    .nav {
+        margin: 4em 2em;
+    }
 }
 
 .nav a {
+    outline: none;
+    text-decoration: none;
+    width: fit-content;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 27px;
+    color: #000000;
+    margin-bottom: 45px;
 }
 
 .nav a:hover {
+    color: #58ACFF;
+}
+
+.nav a:active {
+    color: #3D6B99;
 }
 
 .nav a.active {
+    color: #0059B2;
+    text-decoration-line: underline;
+
 }
+
 .close {
+    position: absolute;
+    top: 22px;
+    right: 30px;
+    display: flex;
+    cursor: pointer;
+    padding: 0;
+    border: none;
+    background-color: transparent;
 }
 
 .close img {
+    width: 18px;
+    height: 18px;
+}
+
+.active {
+    text-decoration-line: underline;
+    color: #0059B2;
 }

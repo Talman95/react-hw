@@ -1,12 +1,11 @@
 .App {
     --header_height: 60px;
-    max-width: 1200px;
     margin: 0 auto;
 }
 
 .hw {
     position: relative;
-    padding: 25px 15px;
+    padding: 25px 5rem;
 }
 
 .hwTitle {
@@ -15,8 +14,9 @@
     line-height: 27px;
     color: #000000;
     margin: 30px 0 10px;
-    padding: 0 15px;
+    padding: 0 5rem;
 }
+
 .hw::after {
     background: #dce1e4;
     content: "";
@@ -27,6 +27,7 @@
     right: 0;
     top: 0;
 }
+
 .hw::before {
     background: #dce1e4;
     content: "";
@@ -36,4 +37,13 @@
     position: absolute;
     right: 0;
     bottom: 0;
+}
+
+@media (max-width: 500px) {
+    .hw {
+        padding: 25px 2rem;
+    }
+    .hwTitle {
+        padding: 0 2rem;
+    }
 }
