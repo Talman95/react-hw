@@ -1,3 +1,28 @@
 .loader {
-    /*свг и/или анимация*/
+    position: relative;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: conic-gradient(transparent, #512DE4);
+    animation: rotating 1s linear infinite;
+}
+
+.loader::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: #FFFFFF;
+}
+
+@keyframes rotating {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }

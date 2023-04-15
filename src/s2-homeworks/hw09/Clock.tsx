@@ -37,7 +37,7 @@ function Clock() {
     const stringTime = [date.getHours(), date.getMinutes(), date.getSeconds()]
         .map(convertDate).join(':') || <br/>
 
-    const stringDate = [date.getDate(), date.getMonth(), date.getFullYear()]
+    const stringDate = [date.getDate(), date.getMonth() + 1, date.getFullYear()]
         .map(convertDate).join('.') || <br/>
 
     // день недели на английском, месяц на английском (https://learn.javascript.ru/intl#intl-datetimeformat)
