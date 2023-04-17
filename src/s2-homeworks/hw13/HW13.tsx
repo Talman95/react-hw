@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import s2 from '../../s1-main/App.module.css'
 import s from './HW13.module.css'
 import SuperButton from '../hw04/common/c2-SuperButton/SuperButton'
-import axios from 'axios'
+import axios, {AxiosError} from 'axios'
 import success200 from './images/200.svg'
 import error400 from './images/400.svg'
 import error500 from './images/500.svg'
@@ -24,7 +24,7 @@ const HW13 = () => {
         const url =
             x === null
                 ? 'https://xxxxxx.ccc' // имитация запроса на не корректный адрес
-                : 'https://incubator-personal-page-back.herokuapp.com/api/3.0/homework/test'
+                : 'https://samurai.it-incubator.io/api/3.0/homework/test'
 
         setCode('')
         setImage('')
@@ -34,14 +34,36 @@ const HW13 = () => {
         axios
             .post(url, {success: x})
             .then((res) => {
+                const {errorText, info} = res.data
+
                 setCode('Код 200!')
                 setImage(success200)
-                // дописать
-
+                setText(errorText)
+                setInfo(info)
+                console.log(res)
             })
             .catch((e) => {
-                // дописать
+                console.log(e)
+                const err = e as Error | AxiosError<{ errorText: string, info: string }>
 
+                if (axios.isAxiosError(err)) {
+                    if (err.response?.status === 400) {
+                        setCode('Код 400!')
+                        setImage(error400)
+                        setText(err.response?.data.errorText)
+                        setInfo(err.response?.data.info)
+                    } else if (err.response?.status === 500) {
+                        setCode('Код 500!')
+                        setImage(error500)
+                        setText(err.response?.data.errorText)
+                        setInfo(err.response?.data.info)
+                    } else {
+                        setCode('Error!')
+                        setImage(errorUnknown)
+                        setText(err.message)
+                        setInfo(err.name)
+                    }
+                }
             })
     }
 
@@ -55,7 +77,7 @@ const HW13 = () => {
                         id={'hw13-send-true'}
                         onClick={send(true)}
                         xType={'secondary'}
-                        // дописать
+                        disabled={info === '...loading'}
 
                     >
                         Send true
@@ -64,7 +86,7 @@ const HW13 = () => {
                         id={'hw13-send-false'}
                         onClick={send(false)}
                         xType={'secondary'}
-                        // дописать
+                        disabled={info === '...loading'}
 
                     >
                         Send false
@@ -73,7 +95,7 @@ const HW13 = () => {
                         id={'hw13-send-undefined'}
                         onClick={send(undefined)}
                         xType={'secondary'}
-                        // дописать
+                        disabled={info === '...loading'}
 
                     >
                         Send undefined
@@ -82,7 +104,7 @@ const HW13 = () => {
                         id={'hw13-send-null'}
                         onClick={send(null)} // имитация запроса на не корректный адрес
                         xType={'secondary'}
-                        // дописать
+                        disabled={info === '...loading'}
 
                     >
                         Send null
