@@ -8,7 +8,7 @@
 .header {
     height: 60px;
     width: 100%;
-    background: #FFFFFF;
+    background-color: var(--background);
     box-shadow: 0 0 40px rgba(29, 33, 38, 0.13), 0 0 2px rgba(29, 33, 38, 0.1);
     padding: 15px 5rem;
     display: flex;
@@ -26,5 +26,5 @@
     font-weight: 600;
     font-size: 24px;
     line-height: 29px;
-    color: #000000;
+    color: var(--color);
 }

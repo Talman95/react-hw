@@ -32,7 +32,7 @@
 .nameCol, .ageCol {
     font-size: 14px;
     line-height: 16px;
-    color: #000000;
+    color: var(--color);
 }
 
 .nameCol {
@@ -51,4 +51,5 @@ td {
 
 thead tr td {
     font-weight: 600 !important;
+    color: #000000 !important;
 }

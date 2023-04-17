@@ -27,7 +27,8 @@
     font-weight: 500;
     font-size: 16px;
     line-height: 20px;
-    color: #000000;
+    background-color: var(--background);
+    color: var(--color);
 }
 
 @media (max-width: 500px) {
@@ -87,13 +88,14 @@
     font-weight: 400;
     font-size: 14px;
     line-height: 17px;
-    color: rgba(0, 0, 0, 0.5);
+    color: var(--color);
     margin-bottom: 9px;
+    opacity: 0.5;
 }
 
 .greeting {
     font-weight: 500;
     font-size: 14px;
     line-height: 17px;
-    color: #000000;
+    color: var(--color);
 }

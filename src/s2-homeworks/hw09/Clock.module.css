@@ -11,7 +11,7 @@
     font-weight: 400;
     font-size: 20px;
     line-height: 24px;
-    color: #000000;
+    color: var(--color);
 }
 
 .more {
@@ -19,5 +19,6 @@
     font-weight: 400;
     font-size: 16px;
     line-height: 20px;
-    color: rgba(0, 0, 0, 0.5);
+    color: var(--color);
+    opacity: 0.5;
 }

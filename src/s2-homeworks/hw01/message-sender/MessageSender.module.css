@@ -6,7 +6,7 @@
 
 .textarea {
     width: 100%;
-    background: #F5F7FB;
+    background-color: var(--background);
     border-radius: 20px;
     padding: 12px 24px;
     resize: none;
@@ -20,7 +20,7 @@
     font-weight: 400;
     font-size: 14px;
     line-height: 17px;
-    color: rgba(0, 0, 0, 0.6);
+    color: var(--color);
 }
 
 .button {
