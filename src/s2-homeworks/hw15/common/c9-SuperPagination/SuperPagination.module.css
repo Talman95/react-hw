@@ -1,11 +1,12 @@
 .pagination {
     display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+    column-gap: 15px;
 }
 
-.text1 {
-
-}
-
-.text2 {
-
+.text1, .text2 {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
 }

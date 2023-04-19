@@ -1,9 +1,5 @@
 import React from 'react'
-
-// добавить в проект иконки и импортировать
-const downIcon = '[\\/]'
-const upIcon = '[/\\]'
-const noneIcon = '[--]'
+import {TiArrowSortedDown, TiArrowSortedUp, TiArrowUnsorted} from "react-icons/ti";
 
 export type SuperSortPropsType = {
     id?: string
@@ -13,8 +9,11 @@ export type SuperSortPropsType = {
 }
 
 export const pureChange = (sort: string, down: string, up: string) => {
-    // пишет студент, sort: (click) => down (click) => up (click) => '' (click) => down ...
-    return up // исправить
+    if (sort === '') return down
+    if (sort === down) return up
+    if (sort === up) return ''
+
+    return down
 }
 
 const SuperSort: React.FC<SuperSortPropsType> = (
@@ -29,24 +28,19 @@ const SuperSort: React.FC<SuperSortPropsType> = (
         onChange(pureChange(sort, down, up))
     }
 
-    const icon = sort === down
-        ? downIcon
+    const Icon = sort === down
+        ? TiArrowSortedDown
         : sort === up
-            ? upIcon
-            : noneIcon
+            ? TiArrowSortedUp
+            : TiArrowUnsorted
 
     return (
         <span
             id={id + '-sort-' + value}
             onClick={onChangeCallback}
+            style={{display: 'flex', alignItems: 'center'}}
         >
-            {/*сделать иконку*/}
-            {/*<img*/}
-            {/*    id={id + '-icon-' + sort}*/}
-            {/*    src={icon}*/}
-            {/*/>*/}
-
-            {icon} {/*а это убрать*/}
+            <Icon size={'16px'}/>
         </span>
     )
 }

@@ -5,6 +5,7 @@ import axios from 'axios'
 import SuperPagination from './common/c9-SuperPagination/SuperPagination'
 import {useSearchParams} from 'react-router-dom'
 import SuperSort from './common/c10-SuperSort/SuperSort'
+import {Loader} from '../hw10/Loader'
 
 /*
 * 1 - дописать SuperPagination
@@ -30,7 +31,7 @@ type ParamsType = {
 const getTechs = (params: ParamsType) => {
     return axios
         .get<{ techs: TechType[], totalCount: number }>(
-            'https://incubator-personal-page-back.herokuapp.com/api/3.0/homework/test3',
+            'https://samurai.it-incubator.io/api/3.0/homework/test3',
             {params}
         )
         .catch((e) => {
@@ -51,36 +52,30 @@ const HW15 = () => {
         setLoading(true)
         getTechs(params)
             .then((res) => {
-                // делает студент
+                const techs = res?.data.techs
+                const totalCount = res?.data.totalCount
 
-                // сохранить пришедшие данные
+                techs && setTechs(techs)
+                totalCount && setTotalCount(totalCount)
 
-                //
+                setLoading(false)
             })
     }
 
     const onChangePagination = (newPage: number, newCount: number) => {
-        // делает студент
+        setPage(newPage)
+        setCount(newCount)
 
-        // setPage(
-        // setCount(
-
-        // sendQuery(
-        // setSearchParams(
-
-        //
+        sendQuery({page: newPage, count: newCount, sort}) //?
+        setSearchParams({page: String(newPage), count: String(newCount), sort}) //?
     }
 
     const onChangeSort = (newSort: string) => {
-        // делает студент
+        setSort(newSort)
+        setPage(1) // при сортировке сбрасывать на 1 страницу
 
-        // setSort(
-        // setPage(1) // при сортировке сбрасывать на 1 страницу
-
-        // sendQuery(
-        // setSearchParams(
-
-        //
+        sendQuery({page: 1, count, sort})
+        setSearchParams({page: String(1), count: String(count), sort})
     }
 
     useEffect(() => {
@@ -107,7 +102,10 @@ const HW15 = () => {
             <div className={s2.hwTitle}>Homework #15</div>
 
             <div className={s2.hw}>
-                {idLoading && <div id={'hw15-loading'} className={s.loading}>Loading...</div>}
+                {idLoading &&
+                    <div id={'hw15-loading'} className={s.loading}>
+                        <Loader/>
+                    </div>}
 
                 <SuperPagination
                     page={page}
@@ -124,7 +122,8 @@ const HW15 = () => {
 
                     <div className={s.developerHeader}>
                         developer
-                        <SuperSort sort={sort} value={'developer'} onChange={onChangeSort}/>
+                        <SuperSort sort={sort} value={'developer'}
+                                   onChange={onChangeSort}/>
                     </div>
                 </div>
 
